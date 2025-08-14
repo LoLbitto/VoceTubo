@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --font-poppins: sans-serif;
+    --text-x2: 30px;
+}
+
+header {
+    width: 100vw;
+}
+
+#logo {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#search-bar {
+    width: 800px;
+
+    margin-left: 150px;
+    margin-top: 10px;
+}
+
+#search-bar-body {
+    border-style: solid;
+    border-width: 2px 0px 2px 2px;
+    border-color: grey;
+    border-radius: 20px 0px 0px 20px;
+
+    width: 725px;
+    height: 35px;
+}
+
+#search-bt-div {
+    border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    border-radius: 0px 20px 20px 0px;
+
+    width: 75px;
+    height: 35px;
+
+    background-color: grey;
+}
+
+#ipesquisa {
+    font-size: 15px;
+    margin-top: 5px;
+    margin-left: 10px;
+
+    width: 710px;
+}
+
+#ipesquisa:focus {
+    outline: none;
+}

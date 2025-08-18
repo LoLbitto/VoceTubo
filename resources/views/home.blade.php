@@ -5,10 +5,13 @@
         @viteReactRefresh
         @vite(['resources/js/home.tsx', 'resources/css/theme.css'])
     </head>
-    <home>
+    <body>
         <header id = "header">
         </header>
         <div id = "root">
         </div>
-    </home>
+    </body>
+    <data>
+        <div class = "videoData" title = "Teste Título" canal = "Teste">
+    </data>
 </html>

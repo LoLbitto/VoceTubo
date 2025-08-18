@@ -56,3 +56,38 @@ header {
 #ipesquisa:focus {
     outline: none;
 }
+
+#videosList {
+    margin: 20px 20px 20px 20px;
+}
+
+.videoThumb {
+    border-radius: 10px;
+
+    margin-left: 10px;
+
+    width: 180px;
+    height:111px;
+    background-color: grey;
+}
+
+.video {
+    padding-top: 10px;
+
+    margin: 5px 10px 10px 5px;
+
+    border-radius: 10px;
+    width: 200px;
+    height: 230px;
+    background-color: white;
+
+    p {
+        margin-left: 10px;
+    }
+
+    transition: background-color 0.5s;
+}
+
+.video:hover {
+    background-color: lightgrey;
+}

@@ -12,10 +12,13 @@ export default function Header() {
                     <div id = "search-bar-body" class = "inline-block">
                         <input type = "text" id = "ipesquisa" name = "pesquisa" />
                     </div>
-                    <div id = "search-bt-div" class = "inline-block float-right">
-                    </div>
+                    <input type = "submit" id = "search-bt-div" class = "inline-block float-right"/>
                 </div>
             </form>
+
+            <a class = "inline float-right" href = "login/">
+                <img src = "images/user.webp" id = "user-icon"></img>
+            </a>
         </div>
     )
 }

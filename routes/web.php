@@ -8,3 +8,4 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/', [MainController::class, 'index']);
 Route::get('/login/', [LoginController::class, 'login']);
+Route::get('/register/', [LoginController::class, 'register']);

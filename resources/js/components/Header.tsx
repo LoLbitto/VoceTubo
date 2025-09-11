@@ -19,7 +19,7 @@ export default function Header() {
             </form>
 
             <a className = "pt-3 pr-3 inline-box justify-self-end" href = "login/">
-                <img className = "w-14 invert" src = "images/user.webp"></img>
+                <img className = "w-14 dark:invert" src = "images/user.webp"></img>
             </a>
         </header>
     )

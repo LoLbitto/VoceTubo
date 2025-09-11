@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-
+    <a href = "/" class = "fixed mt-1 ml-1"><button class = "font-mono border-0 font-semibold outline-gray-300 outline-2 p-1 w-20 rounded-3xl text-lg text-gray-400 hover:bg-gray-300 hover:text-gray-700 hover:outline-gray-300 hover:border-gray-300 transition delay-40 furation-300"> Voltar </button></a>
     <div class = "flex h-screen w-screen p-10">
         <div class = "rounded-2xl bg-gray-300 dark:bg-card h-full w-1/3 p-5 ml-55">
             <h1 class = "text-5xl text-center font-sans text-gray-800 dark:text-gray-200 antialised font-semibold"> Junte-se ao <t class = "text-5xl text-center font-sans text-red-800 antialised font-semibold">Você</t>Tubo! </h1>
@@ -22,10 +22,11 @@
                     <br>
                     <input type= "text" placeholder = "E-Mail" name = "email" value = "{{old('email')}}" class= "font-mono font-medium rounded-2xl border-gray-300 border-3 border-solid p-2 w-50 focus:border-gray-400 focus:outline-0 transition delay-40 duration-300 w-full">
                     <br>
-
-                    @error('email')
-                        <p class = "text-red-400"> {{$message}} </p>
-                    @enderror
+                    <div class = "h-2">
+                        @error('email')
+                            <p class = "text-red-400"> {{$message}} </p>
+                        @enderror
+                    </div>
                     <br>
                     <label for= "password" class = "text-2xl font-light">
                         Senha
@@ -34,10 +35,13 @@
                     <input type= "password" placeholder = "Senha" name = "password" value = "{{old('password')}}" class= "font-mono font-medium rounded-2xl border-gray-300 border-3 border-solid p-2 w-50 focus:border-gray-400 focus:outline-0 transition delay-40 duration-300 w-full">
                     <br>
 
-                    @error('password')
-                        <p class = "text-red-400"> {{$message}} </p>
-                    @enderror
+                    <div class = "h-2">
+                        @error('password')
+                            <p class = "text-red-400"> {{$message}} </p>
+                        @enderror
+                    </div>
 
+                    <br>
                     <br>
                     <div class = "text-center">
                         <input type= "submit" value= "Entrar" class= "font-mono border-0 font-semibold outline-gray-300 outline-4 p-2 w-60 rounded-3xl text-xl text-gray-400 hover:bg-gray-300 hover:text-gray-700 hover:outline-gray-300 hover:border-gray-300 transition delay-40 furation-300">

@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username', 50)->unique();
+            $table->string('email', 100)->unique();
             $table->string('viewname', 50)->nullable();
-            $table->string('password', 30);
+            $table->string('password', 200);
+            $table->string('remember_token', 100)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

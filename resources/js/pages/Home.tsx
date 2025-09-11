@@ -6,9 +6,15 @@ export default function Home() {
     return (
         <div>
             <Header />
-            <Video titulo = "teste1"/>
-            <Video titulo = "teste2"/>
-            <Video titulo = "teste3"/>
+            <div className = "flex mt-10 pl-30 flex-wrap gap-5 w-screen">
+                <Video titulo = "teste1"/>
+                <Video titulo = "teste2"/>
+                <Video titulo = "teste3"/>
+                <Video titulo = "teste1"/>
+                <Video titulo = "teste1"/>
+                <Video titulo = "teste1"/>
+                <Video titulo = "teste1"/>
+            </div>
         </div>
     );
 }

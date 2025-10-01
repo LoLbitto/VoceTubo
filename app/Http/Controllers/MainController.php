@@ -10,4 +10,9 @@ class MainController extends Controller {
 
         return Inertia::render("Home");
     }
+
+    public function channel (Request $request) {
+
+        return Inertia::render("Channel");
+    }
 }

@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\LoginController;
 use App\Http\Middleware\CheckLogin;
+use App\Http\Middleware\CheckNotLogged;
 
 Route::get('/', [MainController::class, 'index'])->name('home');
 
@@ -19,7 +20,7 @@ Route::middleware([CheckNotLogged::class])->group(
 
 Route::middleware([CheckLogin::class])->group(
     function() {
-        Route::get('/channel/', [LoginController::class, 'channel'])->name('user.home');
+        Route::get('/channel/', [MainController::class, 'channel'])->name('user.home');
     }
 );
 

@@ -27,9 +27,18 @@ class LoginController extends Controller {
             'password.max' => "A senha possui no máximo :max caracteres!",
         ]);
 
-        if (User::where('email', $dados['email'])->first()) {
+        $usuario = User::where('email', $dados['email'])->whereNull('deleted_at')->first();
+
+        if ($usuario) {
             if (Auth::attempt($dados)) {
                 $request->session()->regenerate();
+
+                session([
+                    'user' => [
+                        'id' => $usuario->id,
+                        'username' => $usuario->username,
+                    ]
+                ]);
 
                 return redirect()->intended('/');
             } else {

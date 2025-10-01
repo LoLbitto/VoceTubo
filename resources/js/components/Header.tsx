@@ -1,9 +1,9 @@
 export default function Header() {
     return(
         <header className = "h-20 grid grid-cols-3">
-            <p className = "pt-5 pl-5 font-sans text-x2 font-medium text-gray-900 text-3xl dark:text-gray-200 justify-self-start inline-box">
+            <a className = "pt-5 pl-5 font-sans text-x2 font-medium text-gray-900 text-3xl dark:text-gray-200 justify-self-start inline-box" href = "/">
                 <t className = "text-red-500">Você</t>Tubo
-            </p>
+            </a>
 
             <form method = "GET" className = "inline-block w-fit h-full justify-self-center">
                 <div className = "grid place-items-center h-full">

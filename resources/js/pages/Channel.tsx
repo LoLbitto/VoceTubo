@@ -4,12 +4,12 @@ import Video from "@/components/Video.tsx";
 import ChannelMenu from "@/components/ChannelMenu.tsx";
 import * as React from "react";
 
-export default function Channel({username}) {
+export default function Channel({username, subs}) {
     var [tab, setTab] = React.useState(0);
     return (
         <div>
             <Header />
-            <ChannelMenu tab = {tab} setTab = {setTab} username = {username}/>
+            <ChannelMenu tab = {tab} setTab = {setTab} username = {username} subs = {subs}/>
         </div>
     );
 }

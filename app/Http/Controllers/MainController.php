@@ -13,6 +13,8 @@ class MainController extends Controller {
 
     public function channel (Request $request) {
 
-        return Inertia::render("Channel");
+        return Inertia::render("Channel", [
+            'username' => session()->get('user')['username'],
+        ]);
     }
 }

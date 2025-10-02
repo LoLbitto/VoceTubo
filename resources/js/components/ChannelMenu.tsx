@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import * as React from "react";
 
-export default function ChannelMenu({tab, setTab}) {
+export default function ChannelMenu({tab, setTab, username}) {
     return (
         <div>
             <img src = "/images/banner.jpg" class = "w-full h-90 object-none" />
@@ -9,7 +9,7 @@ export default function ChannelMenu({tab, setTab}) {
                 <img src = "/images/user.webp" class = "w-40 h-40 invert rounded-3xl"/>
             </div>
             <div class = "relative left-70 pt-2">
-                <h1 class = "font-bold font-sans text-5xl"> Nome do canal </h1>
+                <h1 class = "font-bold font-sans text-5xl"> {username} </h1>
                 <p> 2.000 subscribers </p>
             </div>
             <button class = "absolute top-113 right-10 font-sans border-foreground border-3 rounded-xl p-2 text-xl hover:bg-foreground hover:text-background transition duration-200 delay-100"> Inscrever-se </button>

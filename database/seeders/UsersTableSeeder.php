@@ -21,6 +21,12 @@ class UsersTableSeeder extends Seeder
                 'password'  =>  Hash::make('12345678'),
                 'created_at'=>  now(),
             ],
+            [
+                'username' => 'second',
+                'email'  =>  'teste2@email.com',
+                'password'  =>  Hash::make('12345678'),
+                'created_at'=>  now(),
+            ],
         ]);
     }
 }

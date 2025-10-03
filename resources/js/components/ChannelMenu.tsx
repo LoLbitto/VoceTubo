@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import * as React from "react";
 
-export default function ChannelMenu({tab, setTab, username, subs}) {
+export default function ChannelMenu({tab, setTab, username, subs, userid}) {
     return (
         <div>
             <img src = "/images/banner.jpg" class = "w-full h-90 object-none" />
@@ -12,7 +12,11 @@ export default function ChannelMenu({tab, setTab, username, subs}) {
                 <h1 class = "font-bold font-sans text-5xl"> {username} </h1>
                 <p> {subs} subscribers </p>
             </div>
-            <button class = "absolute top-113 right-10 font-sans border-foreground border-3 rounded-xl p-2 text-xl hover:bg-foreground hover:text-background transition duration-200 delay-100"> Inscrever-se </button>
+            { userid != -1 ?
+            <button class = "absolute top-113 right-10 font-sans border-foreground border-3 rounded-xl p-2 text-xl hover:bg-foreground hover:text-background transition duration-200 delay-100" onClick = {() => {sendSubFetch(userid)}}> Inscrever-se </button>
+            :
+            null
+            }
             <nav class = "relative top-15 border-b-2 grid grid-cols-3 text-lg">
                 <button class = {tab == 0 ? "border-b-5" : ""} onClick = {() => {setTab(0)}}> Videos </button>
                 <button class = {tab == 1 ? "border-b-5" : ""} onClick = {() => {setTab(1)}}> Posts </button>
@@ -20,4 +24,18 @@ export default function ChannelMenu({tab, setTab, username, subs}) {
             </nav>
         </div>
     );
+}
+
+function sendSubFetch(id) {
+    return fetch("/api/subrequest", {
+        method: "POST",
+        headers: {
+            'Content-Type' : "application/json"
+        },
+        body: JSON.stringify({
+            id : id,
+        }),
+    }).then(function (response) {
+        return response;
+    });
 }

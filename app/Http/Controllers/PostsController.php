@@ -1,0 +1,55 @@
+<?php
+namespace App\Http\Controllers;
+
+use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class PostController extends Controller
+{
+
+    public function posts()
+    {
+        return view('posts_form');
+    }
+
+    public function postsSubmit(Request $request)
+{
+   =
+    $dados = $request->validate([
+        'title' => 'required|min:2|max:30',
+        'text'  => 'required|min:20|max:200',
+    ],
+        [
+        'title.required' => "O campo de titulo é obrigatório",
+        'text.required' => "O campo de texto é obrigatório",
+        ]);
+        
+    $post = new Post;
+
+    
+    $post->title = $dados['title']; 
+    $post->text = $dados['text'];
+    $post->has_image = false;
+    $post->user_id = session()->get('user')['id'];
+
+    $post->save();
+
+        return Inertia::render("Channel");
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+        return Inertia::render("Channel")
+            ->with('sucesso', 'Post Deletado com sucesso');
+    }
+
+    public function edit($id)
+    {
+        $post = Post::find($id);
+        return view('posts.edit', compact('post'));
+    }
+
+}

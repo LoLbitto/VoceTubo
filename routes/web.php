@@ -16,6 +16,7 @@ Route::middleware([CheckNotLogged::class])->group(
         Route::get('/login/', [LoginController::class, 'login']);
         Route::post('/loginsubmit', [LoginController::class, 'loginSubmit'])->name('login.submit');
         Route::get('/register/', [LoginController::class, 'register']);
+        Route::post('/registersubmit/', [LoginController::class, 'registerSubmit'])->name('register.submit');
     }
 );
 

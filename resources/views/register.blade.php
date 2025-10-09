@@ -15,27 +15,43 @@
         <div class = "h-full w-1/3 p-5 text-center">
             <t class = "text-4xl text-center font-mono font-medium antialised">Registro</t>
             <div class = "text-left">
-                <form class = "pt-10">
-                    <label for= "email" class = "text-2xl font-light">
-                        E-Mail
-                    </label>
-                    <br>
-                    <input type= "text" placeholder = "E-Mail" name = "email" class= "font-mono font-medium rounded-2xl border-gray-300 border-3 border-solid p-2 w-50 focus:border-gray-400 focus:outline-0 transition delay-40 duration-300 w-full">
-                    <br>
-                    <br>
+                <form method = "POST" action = "/registersubmit" class = "pt-10">
+                    @csrf
                     <label for= "username" class = "text-2xl font-light">
                         Nome de Usuário
                     </label>
                     <br>
                     <input type= "text" placeholder = "Nome" name = "username" class= "font-mono font-medium rounded-2xl border-gray-300 border-3 border-solid p-2 w-50 focus:border-gray-400 focus:outline-0 transition delay-40 duration-300 w-full">
                     <br>
+                    <div class = "h-2">
+                        @error('username')
+                            <p class = "text-red-400"> {{$message}} </p>
+                        @enderror
+                    </div>
                     <br>
-                    <label for= "senha" class = "text-2xl font-light">
+                    <label for= "email" class = "text-2xl font-light">
+                        E-Mail
+                    </label>
+                    <br>
+                    <input type= "text" placeholder = "E-Mail" name = "email" class= "font-mono font-medium rounded-2xl border-gray-300 border-3 border-solid p-2 w-50 focus:border-gray-400 focus:outline-0 transition delay-40 duration-300 w-full">
+                    <br>
+                    <div class = "h-2">
+                        @error('email')
+                            <p class = "text-red-400"> {{$message}} </p>
+                        @enderror
+                    </div>
+                    <br>
+                    <label for= "password" class = "text-2xl font-light">
                         Senha
                     </label>
                     <br>
-                    <input type= "text" placeholder = "Senha" name = "senha" class= "font-mono font-medium rounded-2xl border-gray-300 border-3 border-solid p-2 w-50 focus:border-gray-400 focus:outline-0 transition delay-40 duration-300 w-full">
+                    <input type= "password" placeholder = "Senha" name = "password" class= "font-mono font-medium rounded-2xl border-gray-300 border-3 border-solid p-2 w-50 focus:border-gray-400 focus:outline-0 transition delay-40 duration-300 w-full">
                     <br>
+                    <div class = "h-2">
+                        @error('password')
+                            <p class = "text-red-400"> {{$message}} </p>
+                        @enderror
+                    </div>
                     <br>
                     <div class = "text-center">
                         <input type= "submit" value= "Criar conta" class= "font-mono border-0 font-semibold outline-gray-300 outline-4 p-2 w-60 rounded-3xl text-xl text-gray-400 hover:bg-gray-300 hover:text-gray-700 hover:outline-gray-300 hover:border-gray-300 transition delay-40 furation-300">

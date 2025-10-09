@@ -6,7 +6,7 @@ export default function ChannelMenu({tab, setTab, username, subs, userid}) {
         <div>
             <img src = "/images/banner.jpg" class = "w-full h-90 object-none" />
             <div class = "rounded-full bg-background absolute top-90 left-20 object-none border-background border-10">
-                <img src = "/images/user.webp" class = "w-40 h-40 invert rounded-3xl"/>
+                <img src = "/images/user.webp" class = "w-40 h-40 dark:invert rounded-3xl"/>
             </div>
             <div class = "relative left-70 pt-2">
                 <h1 class = "font-bold font-sans text-5xl"> {username} </h1>

@@ -7,6 +7,9 @@ use inertia\Inertia;
 
 use App\Models\UserUser;
 use App\Models\User;
+use App\Models\Post;
+
+use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller {
     public function index (Request $request) {
@@ -18,18 +21,19 @@ class MainController extends Controller {
 
         $subs = UserUser::where('channel_id', session()->get('user')['id'])->count();
 
+        $posts = Post::where('user_id', session()->get('user')['id'])->get();
+
         return Inertia::render("Channel", [
             'username' => session()->get('user')['username'],
             'subs' => $subs,
             'userid' => -1,
+            'posts' => $posts,
         ]);
     }
 
     public function visitChannel (Request $request, String $channel) {
 
         $user = User::where('username', $channel)->first();
-
-        $posts = Post::where('user_id', Auth::id())->get();
 
         $subs = UserUser::where('channel_id', $user->id)->count();
 

@@ -5,7 +5,8 @@ import ChannelMenu from "@/components/ChannelMenu.tsx";
 import PostsTab from "@/components/PostsTab.tsx";
 import * as React from "react";
 
-export default function Channel({username, subs, userid}) {
+export default function Channel({username, subs, userid, posts}) {
+    console.log(posts);
     var [tab, setTab] = React.useState(0);
     return (
         <div>
@@ -17,10 +18,10 @@ export default function Channel({username, subs, userid}) {
             </div>
             : tab == 1 ?
             <div className = "relative top-20">
-                <button className = "absolute left-20 border-3 border-foreground rounded-xl p-2">
+                <button className = "absolute left-20 border-3 border-foreground rounded-xl p-2" onClick = {() => {window.location = "/posts"}}>
                     Novo
                 </button>
-                <PostsTab posts = {[2, 3]} userid = {userid}/>
+                <PostsTab posts = {posts} userid = {userid}/>
             </div>
             : 
             <div className = "relative top-20">

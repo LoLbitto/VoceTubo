@@ -6,7 +6,7 @@ export default function PostsTab({posts, userid}) {
     let postsElements = [];
 
     for (let i = 0; i < posts.length; i++)
-        postsElements.push(<Post titulo = "teste" texto = "teste" id = {1} userid = {userid}/>);
+        postsElements.push(<Post titulo = {posts[i]['title']} texto = {posts[i]['text']} id = {posts[i]['id']} userid = {userid}/>);
 
     return (
         <div className = "relative top-20 left-20">

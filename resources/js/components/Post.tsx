@@ -7,6 +7,9 @@ export default function Post({titulo, texto, id, userid}) {
             <button className = "absolute left-420" onClick = {() => {window.location.href = "/posts/" + id + "/edit"}}>
                 Edit
             </button>
+            <button className = "absolute left-420 mt-7" onClick = {() => {window.location.href = "/posts/" + id}}>
+                Delete
+            </button>
             <h1 className = "text-2xl font-bold">
                 {titulo}
             </h1>

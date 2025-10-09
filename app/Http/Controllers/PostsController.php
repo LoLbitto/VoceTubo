@@ -37,15 +37,14 @@ class PostsController extends Controller
 
         $post->save();
 
-        return Inertia::render("Channel");
+        return redirect()->route('user.home');
     }
 
     public function destroy($id)
     {
         $post = Post::find($id);
         $post->delete();
-        return Inertia::render("Channel")
-            ->with('sucesso', 'Post Deletado com sucesso');
+        return redirect()->route('user.home');
     }
 
     public function edit($id)
@@ -75,7 +74,7 @@ class PostsController extends Controller
 
         $post->save();
 
-        return Inertia::render("Channel");
+        return redirect()->route('user.home');
     }
 }
 

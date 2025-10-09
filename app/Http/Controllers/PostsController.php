@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use inertia\Inertia;
 
 
-class PostController extends Controller
+class PostsController extends Controller
 {
 
     public function posts()
@@ -18,24 +18,24 @@ class PostController extends Controller
     public function postsSubmit(Request $request)
     {
 
-    $dados = $request->validate([
-        'title' => 'required|min:2|max:30',
-        'text'  => 'required|min:20|max:200',
-    ],
-        [
-        'title.required' => "O campo de titulo é obrigatório",
-        'text.required' => "O campo de texto é obrigatório",
-        ]);
+        $dados = $request->validate([
+            'title' => 'required|min:2|max:30',
+            'text'  => 'required|min:20|max:200',
+        ],
+            [
+            'title.required' => "O campo de titulo é obrigatório",
+            'text.required' => "O campo de texto é obrigatório",
+            ]);
+            
+        $post = new Post;
+
         
-    $post = new Post;
+        $post->title = $dados['title']; 
+        $post->text = $dados['text'];
+        $post->has_image = false;
+        $post->user_id = session()->get('user')['id'];
 
-    
-    $post->title = $dados['title']; 
-    $post->text = $dados['text'];
-    $post->has_image = false;
-    $post->user_id = session()->get('user')['id'];
-
-    $post->save();
+        $post->save();
 
         return Inertia::render("Channel");
     }

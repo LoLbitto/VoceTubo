@@ -11,7 +11,7 @@
         <div class = "h-full w-full p-5 grid place-items-center text-center">
             <t class = "text-4xl text-center font-mono font-medium antialised">Criar Post</t>
             <div class = "text-left w-full">
-                <form method = "POST" action = "/postsubmit">
+                <form method = "POST" action = "/postssubmit">
                     @csrf
                     <label for= "title" class = "text-2xl font-light">
                         Título

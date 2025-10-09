@@ -26,10 +26,10 @@ Route::middleware([CheckLogin::class])->group(
         Route::get('/channel/', [MainController::class, 'channel'])->name('user.home');
         Route::get('/channel/{channel}', [MainController::class, 'visitChannel'])->name('visit.channel');
 
-        Route::get('/posts', [PostsController::class,'post']);
-        Route::post('/postssubmit', [PostsController::class . '@create'])->name('posts');
-        Route::get('/posts/{post}/edit', [PostsController::class .'@edit'])->name('posts.edit');
-        Route::delete('/posts/{post}', [PostsController::class .'@destroy'])->name('posts.destroy');
+        Route::get('/posts', [PostsController::class,'posts']);
+        Route::post('/postssubmit', [PostsController::class, 'postsSubmit'])->name('posts');
+        Route::get('/posts/{post}/edit', [PostsController::class, '@edit'])->name('posts.edit');
+        Route::delete('/posts/{post}', [PostsController::class, '@destroy'])->name('posts.destroy');
 
     }
 );

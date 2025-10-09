@@ -15,6 +15,8 @@ return new class extends Migration
             $table->foreignId('channel_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('subber_user_id')->constrained('users')->cascadeOnDelete();
             $table->primary(['subber_user_id', 'channel_id']);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

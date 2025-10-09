@@ -15,6 +15,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('video_id')->constrained('videos')->cascadeOnDelete();
             $table->primary(['user_id', 'video_id']);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

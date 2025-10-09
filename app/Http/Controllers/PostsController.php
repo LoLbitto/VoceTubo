@@ -12,7 +12,7 @@ class PostsController extends Controller
 
     public function posts()
     {
-        return view('posts_form');
+        return view('posts_form', ['post' => null]);
     }
 
     public function postsSubmit(Request $request)
@@ -51,7 +51,31 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('posts.edit', compact('post'));
+        return view('posts_form', ['post' => $post]);
+    }
+
+    public function postsEdit(Request $request)
+    {
+
+        $dados = $request->validate([
+            'title' => 'required|min:2|max:30',
+            'text'  => 'required|min:20|max:200',
+            'id'    => 'required'
+        ],
+        [
+            'title.required' => "O campo de titulo é obrigatório",
+            'text.required' => "O campo de texto é obrigatório",
+        ]);
+            
+        $post = Post::find($dados['id']);
+
+        
+        $post->title = $dados['title']; 
+        $post->text = $dados['text'];
+
+        $post->save();
+
+        return Inertia::render("Channel");
     }
 }
 

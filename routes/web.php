@@ -28,7 +28,8 @@ Route::middleware([CheckLogin::class])->group(
 
         Route::get('/posts', [PostsController::class,'posts']);
         Route::post('/postssubmit', [PostsController::class, 'postsSubmit'])->name('posts');
-        Route::get('/posts/{post}/edit', [PostsController::class, '@edit'])->name('posts.edit');
+        Route::get('/posts/{post}/edit', [PostsController::class, 'edit'])->name('posts.edit');
+        Route::post('/postsedit', [PostsController::class, 'postsEdit'])->name('posts.edit.submit');
         Route::delete('/posts/{post}', [PostsController::class, '@destroy'])->name('posts.destroy');
 
     }

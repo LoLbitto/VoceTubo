@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use inertia\Inertia;
 
+
 class PostController extends Controller
 {
 
@@ -52,5 +53,5 @@ class PostController extends Controller
         $post = Post::find($id);
         return view('posts.edit', compact('post'));
     }
-
 }
+

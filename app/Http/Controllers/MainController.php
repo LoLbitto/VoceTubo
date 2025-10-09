@@ -29,12 +29,15 @@ class MainController extends Controller {
 
         $user = User::where('username', $channel)->first();
 
+        $posts = Post::where('user_id', Auth::id())->get();
+
         $subs = UserUser::where('channel_id', $user->id)->count();
 
         return Inertia::render("Channel", [
             'username' => $user->username,
             'subs' => $subs,
             'userid' => $user->id,
+            'posts' => $posts,
         ]);
     }
 }

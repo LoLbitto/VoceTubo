@@ -96,6 +96,8 @@ class LoginController extends Controller {
                 'username' => $usuario->username,
             ]
         ]);
+
+        return redirect()->route("user.home");
     }
 
 

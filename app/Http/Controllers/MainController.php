@@ -37,4 +37,14 @@ class MainController extends Controller {
             'userid' => $user->id,
         ]);
     }
+
+    public function video (Request $request, String $videoCode) {
+        $canal = "teste";
+        $video = "teste";
+
+        return Inertia::render("Video", [
+            'video' => $video,
+            'canal' => $canal,
+        ]);
+    }
 }

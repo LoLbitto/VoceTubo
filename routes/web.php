@@ -10,6 +10,7 @@ use App\Http\Middleware\CheckLogin;
 use App\Http\Middleware\CheckNotLogged;
 
 Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/video/{videoCode}', [MainController::class, 'video'])->name('video');
 
 Route::middleware([CheckNotLogged::class])->group(
     function() {
@@ -25,4 +26,3 @@ Route::middleware([CheckLogin::class])->group(
         Route::get('/channel/{channel}', [MainController::class, 'visitChannel'])->name('visit.channel');
     }
 );
-

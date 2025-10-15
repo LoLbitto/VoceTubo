@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string("text", 100);
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('video_id')->constrained('videos')->cascadeOnDelete();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

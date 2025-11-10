@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Auth;
 class MainController extends Controller {
     public function index (Request $request) {
 
-        return Inertia::render("Home");
+
+        if (session()->has("user"))
+            return Inertia::render("Home", ["user" => session()->get('user')['id']]);
+
+        return Inertia::render("Home", ["user" => null]);
     }
 
     public function channel (Request $request) {
@@ -55,4 +59,4 @@ class MainController extends Controller {
         ]);
     }
 }
-    
+

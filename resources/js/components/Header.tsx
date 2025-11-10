@@ -1,4 +1,4 @@
-export default function Header() {
+export default function Header({ user }) {
     return(
         <header className = "h-20 grid grid-cols-3">
             <a className = "pt-5 pl-5 font-sans text-x2 font-medium text-gray-900 text-3xl dark:text-gray-200 justify-self-start inline-box" href = "/">
@@ -18,9 +18,15 @@ export default function Header() {
                 </div>
             </form>
 
+            {user != null ?
             <a className = "pt-3 pr-3 inline-box justify-self-end" href = "login/">
                 <img className = "w-14 dark:invert" src = "/images/user.webp"></img>
             </a>
+            :
+            <button className = "border-2 border-foreground h-10 mt-5 mr-5 rounded-xl w-20 inline-box justify-self-end" onClick = {() => {
+                window.location = "/login";
+            }}> Entrar </button>
+            }
         </header>
     )
 }

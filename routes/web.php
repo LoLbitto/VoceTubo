@@ -7,6 +7,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\VideosController;
 use App\Http\Middleware\CheckLogin;
 use App\Http\Middleware\CheckNotLogged;
 
@@ -33,5 +34,6 @@ Route::middleware([CheckLogin::class])->group(
         Route::post('/postsedit', [PostsController::class, 'postsEdit'])->name('posts.edit.submit');
         Route::get('/posts/{post}', [PostsController::class, 'destroy'])->name('posts.destroy');
 
+        Route::get('/videos', [VideosController::class, 'videos']);
     }
 );

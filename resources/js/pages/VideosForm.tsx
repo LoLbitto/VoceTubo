@@ -6,12 +6,14 @@ export default function VideosForm() {
     return (
         <div>
             <form>
-                <div className = "grid absolute border-3 border-foreground top-35 left-50 w-100 h-100 rounded-xl">
+                <div id = "videoDiv" className = "grid absolute border-3 border-foreground top-35 left-50 w-100 h-100 rounded-xl">
                     <div id = "thumbDiv" className = "place-self-center grid border-2 rounded-xl border-foreground w-76 h-45 bg-contain">
 
-                        <input type = "file" name = "thumb" id = "thumb" accept = "image/*" className = "hidden" onChange = {function () {
+                        <input type = "file" name = "thumb" id = "thumb" accept = "image/*" className = "hidden" onChange = {(e) => {
                             const div = document.getElementById("thumbDiv");
-                            const file = document.getElementById("thumb").files[0];
+                            const file = e.target.files[0];
+
+                            console.log(URL.createObjectURL(file));
 
                             div.style.backgroundImage = "url('" + URL.createObjectURL(file) + "')";
                         }}/>
@@ -22,7 +24,28 @@ export default function VideosForm() {
                     <br/>
                     <br/>
 
-                    <input type = "file"/>
+                    <input type = "file" name = "video" id = "video" accept="video/*" className = "hidden" onChange = {(e) => {
+                        const file = event.target.files[0]; // Get the first selected file
+                        if (file) {
+                            const video = document.createElement('video');
+                            video.autoplay = true; // Autoplay is useful for loading the first frame immediately
+                            video.muted = true; // Mute the video to avoid sound playing
+                            video.src = URL.createObjectURL(file);
+
+                            video.onloadeddata = () => {
+                                const canvas = document.createElement('canvas');
+                                canvas.width = video.videoWidth;
+                                canvas.height = video.videoHeight;
+                                const ctx = canvas.getContext('2d');
+                                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                                const videoDiv = document.getElementById("videoDiv");
+
+                                videoDiv.style.backgroundImage = "url('" + canvas.toDataURL('image/png') + "')";
+                            };
+                        }
+                    }}/>
+                    <label for = "video" className = "place-self-center font-mono border-0 font-semibold outline-foreground outline-2 p-2 w-40 rounded-xl text-lg text-foreground hover:bg-foreground hover:outline-foreground hover:text-background transition delay-40 furation-300 text-center"> Enviar Vídeo </label>
                 </div>
 
                 <div className = "absolute border-3 border-foreground top-35 left-160 w-150 h-100 p-10 rounded-xl">

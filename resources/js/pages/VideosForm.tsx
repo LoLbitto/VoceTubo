@@ -1,11 +1,12 @@
 import * as React from 'react';
 
 export default function VideosForm() {
-
+    const csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
 
     return (
         <div className = "grid w-full">
-            <form method = "POST" action = "/videosSubmit" className = "place-self-center flex mt-30">
+            <form method = "POST" action = "/videossubmit" encType="multipart/form-data" className = "place-self-center flex mt-30">
+                <input type = "hidden" name = "_token" value = {csrf}/>
                 <div id = "videoDiv" className = "grid border-3 border-foreground w-100 h-100 rounded-xl">
                     <div id = "thumbDiv" className = "place-self-center grid border-2 rounded-xl bg-background border-foreground w-76 h-45 bg-contain">
 

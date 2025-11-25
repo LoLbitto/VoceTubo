@@ -29,11 +29,12 @@ Route::middleware([CheckLogin::class])->group(
         Route::get('/channel/{channel}', [MainController::class, 'visitChannel'])->name('visit.channel');
 
         Route::get('/posts', [PostsController::class,'posts']);
-        Route::post('/postssubmit', [PostsController::class, 'postsSubmit'])->name('posts');
+        Route::post('/postssubmit', [PostsController::class, 'postsSubmit'])->name('posts.submit');
         Route::get('/posts/{post}/edit', [PostsController::class, 'edit'])->name('posts.edit');
         Route::post('/postsedit', [PostsController::class, 'postsEdit'])->name('posts.edit.submit');
         Route::get('/posts/{post}', [PostsController::class, 'destroy'])->name('posts.destroy');
 
         Route::get('/videos', [VideosController::class, 'videos']);
+        Route::post('/videossubmit', [VideosController::class, 'videosSubmit'])->name('posts.submit');
     }
 );

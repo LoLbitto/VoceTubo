@@ -4,10 +4,10 @@ export default function VideosForm() {
 
 
     return (
-        <div>
-            <form>
-                <div id = "videoDiv" className = "grid absolute border-3 border-foreground top-35 left-50 w-100 h-100 rounded-xl">
-                    <div id = "thumbDiv" className = "place-self-center grid border-2 rounded-xl border-foreground w-76 h-45 bg-contain">
+        <div className = "grid w-full">
+            <form method = "POST" action = "/videosSubmit" className = "place-self-center flex mt-30">
+                <div id = "videoDiv" className = "grid border-3 border-foreground w-100 h-100 rounded-xl">
+                    <div id = "thumbDiv" className = "place-self-center grid border-2 rounded-xl bg-background border-foreground w-76 h-45 bg-contain">
 
                         <input type = "file" name = "thumb" id = "thumb" accept = "image/*" className = "hidden" onChange = {(e) => {
                             const div = document.getElementById("thumbDiv");
@@ -25,11 +25,11 @@ export default function VideosForm() {
                     <br/>
 
                     <input type = "file" name = "video" id = "video" accept="video/*" className = "hidden" onChange = {(e) => {
-                        const file = event.target.files[0]; // Get the first selected file
+                        const file = event.target.files[0];
                         if (file) {
                             const video = document.createElement('video');
-                            video.autoplay = true; // Autoplay is useful for loading the first frame immediately
-                            video.muted = true; // Mute the video to avoid sound playing
+                            video.autoplay = true;
+                            video.muted = true;
                             video.src = URL.createObjectURL(file);
 
                             video.onloadeddata = () => {
@@ -47,8 +47,7 @@ export default function VideosForm() {
                     }}/>
                     <label for = "video" className = "place-self-center font-mono border-0 font-semibold outline-foreground outline-2 p-2 w-40 rounded-xl text-lg text-foreground hover:bg-foreground hover:outline-foreground hover:text-background transition delay-40 furation-300 text-center"> Enviar Vídeo </label>
                 </div>
-
-                <div className = "absolute border-3 border-foreground top-35 left-160 w-150 h-100 p-10 rounded-xl">
+                <div className = "inline-block border-3 border-foreground min-w-150 max-w-200 h-100 ml-10 p-10 rounded-xl">
                     <label for = "title" className = "font-mono text-2xl">Título</label>
                     <br/>
                     <br/>

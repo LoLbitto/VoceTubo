@@ -1,11 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use inertia\Inertia;
-
 
 class VideosController extends Controller {
     function videos(Request $request) {
@@ -29,9 +28,15 @@ class VideosController extends Controller {
         $video = $request->file('video');
         $thumb = $request->file('thumb');
 
+        $videoObj = Video::create([
 
+            "title" => $dados['title'],
+            "description" => $dados['descricao'],
+            "user_id" => session()->get('user')['id']
 
-        $thumb->store('uploads/thumbs', 'public');
-        return $video->store('uploads/videos', 'public');
+        ]);
+
+        $thumb->storeAs('uploads/thumbs', (string) $videoObj->id . "." . $thumb->getClientOriginalExtension(), 'public');
+        $video->storeAs('uploads/videos', (string) $videoObj->id . "." . $video->getClientOriginalExtension(), 'public');
     }
 }

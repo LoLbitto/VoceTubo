@@ -17,10 +17,24 @@ class MainController extends Controller {
 
         $videos = Video::limit(50)->get();
 
-        if (session()->has("user"))
-            return Inertia::render("Home", ["user" => session()->get('user')['id'], 'videos' => $videos]);
+        $videosFinal = [];
 
-        return Inertia::render("Home", ["user" => null, "videos" => $videos]);
+        foreach ($videos as $video) {
+            $user = User::where('id', $video->user_id)->first();
+
+            $videoFinal = [
+                "title" => $video->title,
+                "user" => $user,
+                "id" => $video->id
+            ];
+
+            array_push($videosFinal, $videoFinal);
+        }
+
+        if (session()->has("user"))
+            return Inertia::render("Home", ["user" => session()->get('user')['id'], 'videos' => $videosFinal]);
+
+        return Inertia::render("Home", ["user" => null, "videos" => $videosFinal]);
     }
 
     public function channel (Request $request) {

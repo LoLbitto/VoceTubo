@@ -8,17 +8,19 @@ use inertia\Inertia;
 use App\Models\UserUser;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Video;
 
 use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller {
     public function index (Request $request) {
 
+        $videos = Video::limit(50)->get();
 
         if (session()->has("user"))
-            return Inertia::render("Home", ["user" => session()->get('user')['id']]);
+            return Inertia::render("Home", ["user" => session()->get('user')['id'], 'videos' => $videos]);
 
-        return Inertia::render("Home", ["user" => null]);
+        return Inertia::render("Home", ["user" => null, "videos" => $videos]);
     }
 
     public function channel (Request $request) {

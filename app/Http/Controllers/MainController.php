@@ -32,7 +32,7 @@ class MainController extends Controller {
         }
 
         if (session()->has("user"))
-            return Inertia::render("Home", ["user" => session()->get('user')['id'], 'videos' => $videosFinal]);
+            return Inertia::render("Home", ["user" => (int)session()->get('user')['id'], 'videos' => $videosFinal]);
 
         return Inertia::render("Home", ["user" => null, "videos" => $videosFinal]);
     }
@@ -41,6 +41,8 @@ class MainController extends Controller {
 
         $subs = UserUser::where('channel_id', session()->get('user')['id'])->count();
 
+        $videos = Video::where('user_id', session()->get('user')['id'])->limit(50)->get();
+
         $posts = Post::where('user_id', session()->get('user')['id'])->get();
 
         return Inertia::render("Channel", [
@@ -48,6 +50,7 @@ class MainController extends Controller {
             'subs' => $subs,
             'userid' => -1,
             'posts' => $posts,
+            'videos' => $videos
         ]);
     }
 
@@ -57,11 +60,14 @@ class MainController extends Controller {
 
         $subs = UserUser::where('channel_id', $user->id)->count();
 
+        $videos = Video::where('user_id', $user->id)->limit(50)->get();
+
         return Inertia::render("Channel", [
             'username' => $user->username,
             'subs' => $subs,
             'userid' => $user->id,
             'posts' => $posts,
+            'videos' => $videos
         ]);
     }
 

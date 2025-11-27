@@ -19,12 +19,12 @@ export default function Header({ user }) {
             </form>
 
             {user != null ?
-            <a className = "pt-3 pr-3 inline-box justify-self-end" href = "login/">
+            <a className = "pt-3 pr-3 inline-box justify-self-end" href = "/login/">
                 <img className = "w-14 dark:invert" src = "/images/user.webp"></img>
             </a>
             :
-            <button className = "border-2 border-foreground h-10 mt-5 mr-5 rounded-xl w-20 inline-box justify-self-end" onClick = {() => {
-                window.location = "/login";
+            <button className = "border-2 border-foreground h-10 mt-5 mr-5 rounded-xl w-20 inline-box justify-self-end hover:bg-foreground hover:text-background" onClick = {() => {
+                window.location = "/login/";
             }}> Entrar </button>
             }
         </header>

@@ -11,7 +11,7 @@ export default function VideoElement({titulo, id, poster, user}) {
                 }
             }>
             </div>
-            <p className = "ml-5 mt-1 text-xl font-bold">{titulo}</p>
+            <p className = "ml-5 mt-1 text-xl font-bold truncate">{titulo}</p>
             <p className = "ml-5 mt-1">{poster.username}</p>
             <button className = "relative left-50 hover:bg-black dark:hover:bg-white dark:hover:text-black pl-2 pr-2 pb-2 rounded-xl" onClick = {
                 (event) => {

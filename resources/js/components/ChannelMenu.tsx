@@ -17,7 +17,9 @@ export default function ChannelMenu({ issub, tab, setTab, username, subs, userid
                 window.location = "/sub/" + userid;
             }}> {issub ? "Desinscrever-se" : "Inscrever-se"} </button>
             :
-            null
+            <button className = "absolute top-113 right-10 font-sans border-foreground border-3 rounded-xl p-2 text-xl hover:bg-foreground hover:text-background transition duration-200 delay-100" onClick = {() => {
+                window.location = "/logout/";
+            }}>Deslogar</button>
             }
             <nav className = "relative top-15 border-b-2 grid grid-cols-3 text-lg">
                 <button className = {tab == 0 ? "border-b-5" : ""} onClick = {() => {setTab(0)}}> Videos </button>

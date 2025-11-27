@@ -1,11 +1,17 @@
 import * as React from 'react';
 
-export default function VideosForm() {
+export default function VideosForm({video}) {
     const csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
+
+    const [title, setTitle] = React.useState(video != null ? video.title : "");
 
     return (
         <div className = "grid w-full">
-            <form method = "POST" action = "/videossubmit" encType="multipart/form-data" className = "place-self-center flex mt-30">
+            <form method = "POST" action = {video != null ? "/videos/" + video.id + "/update" : "/videossubmit"} encType="multipart/form-data" className = "place-self-center flex mt-30">
+                {video != null ?
+                <input type = "hidden" name = "id" value = {video.id}/>
+                : null
+                }
                 <input type = "hidden" name = "_token" value = {csrf}/>
                 <div id = "videoDiv" className = "grid border-3 border-foreground w-100 h-100 rounded-xl">
                     <div id = "thumbDiv" className = "place-self-center grid border-2 rounded-xl bg-background border-foreground w-76 h-45 bg-contain">
@@ -26,7 +32,7 @@ export default function VideosForm() {
                     <br/>
 
                     <input type = "file" name = "video" id = "video" accept="video/*" className = "hidden" onChange = {(e) => {
-                        const file = event.target.files[0];
+                        const file = e.target.files[0];
                         if (file) {
                             const video = document.createElement('video');
                             video.autoplay = true;
@@ -52,13 +58,19 @@ export default function VideosForm() {
                     <label for = "title" className = "font-mono text-2xl">Título</label>
                     <br/>
                     <br/>
-                    <input type = "text" name = "title" className = "font-mono font-medium rounded-2xl border-foreground border-3 border-solid p-2 w-125 focus:border-gray-400 focus:outline-0 transition delay-40 duration-300" />
+                    <input onChange = {
+                        (e) => {
+                            setTitle(e.target.value);
+                        }
+                    } type = "text" value = {video != null ? title : ""} name = "title" className = "font-mono font-medium rounded-2xl border-foreground border-3 border-solid p-2 w-125 focus:border-gray-400 focus:outline-0 transition delay-40 duration-300" />
                     <br/>
                     <br/>
                     <label for = "descricao" className = "font-mono text-2xl">Descrição</label>
                     <br/>
                     <br/>
-                    <textarea name = "descricao" className = "font-mono font-medium rounded-2xl border-foreground border-3 border-solid p-2 w-125 focus:border-gray-400 focus:outline-0 transition delay-40 duration-300"/>
+                    <textarea name = "descricao" className = "font-mono font-medium rounded-2xl border-foreground border-3 border-solid p-2 w-125 focus:border-gray-400 focus:outline-0 transition delay-40 duration-300">
+                        {video != null ? video.description : ""}
+                    </textarea>
                     <br/>
                     <br/>
                     <div className = "text-center">

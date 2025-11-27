@@ -46,7 +46,8 @@ Route::middleware( [ CheckLogin::class ] )->group(
 
         Route::post( '/videossubmit', [ VideosController::class, 'videosSubmit' ] )->name( 'videos.submit' );
         Route::get( '/videos/{id}/delete', [ VideosController::class, 'destroy' ] )->name( 'videos.delete' );
-        Route::post( '/videos/{id}/edit', [ VideosController::class, 'update' ] )->name( 'video.update' );
+        Route::get( '/videos/{id}/edit', [ VideosController::class, 'edit' ] )->name( 'video.edit' );
+        route::post('/videos/{id}/update', [ VideosController::class, 'update' ]);
 
     }
 );

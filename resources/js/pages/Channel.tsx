@@ -25,7 +25,7 @@ export default function Channel({username, subs, issub, userid, user, posts, vid
 
     return (
         <div className = "h-full">
-            <Header />
+            <Header user = {user}/>
             <ChannelMenu issub = {issub} tab = {tab} setTab = {setTab} username = {username} subs = {subs} userid = {userid}/>
             <br/>
             <br/>
@@ -33,14 +33,14 @@ export default function Channel({username, subs, issub, userid, user, posts, vid
             <br/>
             {tab == 0 ?
             <div className = " h-fit">
-                <button className = "absolute left-20 border-3 border-foreground rounded-xl p-2" onClick = {() => {window.location = "/videos"}}>
+                <button className = "absolute left-20 border-3 border-foreground rounded-xl p-2 hover:bg-foreground hover:text-background" onClick = {() => {window.location = "/videos"}}>
                     Novo
                 </button>
                 <VideosTab videos = {videos} userid = {userid == -1? user : userid}/>
             </div>
             : tab == 1 ?
-            <div className = "relative top-20 h-fit">
-                <button className = "absolute left-20 border-3 border-foreground rounded-xl p-2" onClick = {() => {window.location = "/posts"}}>
+            <div className = "h-fit">
+                <button className = "absolute left-20 border-3 border-foreground rounded-xl p-2 hover:bg-foreground hover:text-background" onClick = {() => {window.location = "/posts"}}>
                     Novo
                 </button>
                 <PostsTab posts = {posts} userid = {userid}/>

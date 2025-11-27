@@ -12,7 +12,6 @@ class VideosController extends Controller {
     }
 
     function videosSubmit( Request $request ) {
-
         $dados = $request->validate( [
             'title' => 'required|max:30',
             'descricao' => 'max:200',
@@ -77,6 +76,18 @@ class VideosController extends Controller {
         }
 
         return redirect()->route( 'user.home' )->with( 'msg', 'Vídeo atualizado!' );
+    }
+
+    public function edit(Request $request, int $id) {
+        $video = Video::where('id', $id)->first();
+
+        if ($video->user_id == session()->get('user')['id']) {
+            return Inertia::render('VideosForm', [
+                'video' => $video,
+            ]);
+        } else {
+            return back();
+        }
     }
 
 }

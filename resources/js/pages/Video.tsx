@@ -36,7 +36,7 @@ export default function Video({video, channel, user, subs, videos, issub}) {
 
     return (
         <div className = "">
-            <Header/>
+            <Header  user = {user}/>
 
             <div className = "grid grid-cols-[1000px_1fr]">
                 <div className = "w-230 h-fit ml-15 mt-10">

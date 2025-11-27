@@ -36,7 +36,16 @@ class VideosController extends Controller {
 
         ]);
 
-        $thumb->storeAs('uploads/thumbs', (string) $videoObj->id . "." . $thumb->getClientOriginalExtension(), 'public');
+        $thumb->storeAs('uploads/thumbs', (string) $videoObj->id . ".png", 'public');
         $video->storeAs('uploads/videos', (string) $videoObj->id . "." . $video->getClientOriginalExtension(), 'public');
+        return redirect()->route('user.home');
+    }
+
+    public function destroy($id)
+    {
+        $video = Video::find($id);
+        if ($video->user_id == session()->get('user')['id'])
+            $video->delete();
+        return back();
     }
 }

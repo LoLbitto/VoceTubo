@@ -26,11 +26,11 @@ class PostsController extends Controller
             'title.required' => "O campo de titulo é obrigatório",
             'text.required' => "O campo de texto é obrigatório",
             ]);
-            
+
         $post = new Post;
 
-        
-        $post->title = $dados['title']; 
+
+        $post->title = $dados['title'];
         $post->text = $dados['text'];
         $post->has_image = false;
         $post->user_id = session()->get('user')['id'];
@@ -43,7 +43,8 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        $post->delete();
+        if ($post->user_id == session()->get('user')['id'])
+            $post->delete();
         return redirect()->route('user.home');
     }
 
@@ -65,11 +66,11 @@ class PostsController extends Controller
             'title.required' => "O campo de titulo é obrigatório",
             'text.required' => "O campo de texto é obrigatório",
         ]);
-            
+
         $post = Post::find($dados['id']);
 
-        
-        $post->title = $dados['title']; 
+
+        $post->title = $dados['title'];
         $post->text = $dados['text'];
 
         $post->save();

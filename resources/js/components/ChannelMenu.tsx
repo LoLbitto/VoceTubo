@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import * as React from "react";
 
-export default function ChannelMenu({tab, setTab, username, subs, userid}) {
+export default function ChannelMenu({ issub, tab, setTab, username, subs, userid }) {
     return (
         <div>
             <img src = "/images/banner.jpg" className = "w-full h-90 object-none" />
@@ -13,7 +13,9 @@ export default function ChannelMenu({tab, setTab, username, subs, userid}) {
                 <p> {subs} subscribers </p>
             </div>
             { userid != -1 ?
-            <button className = "absolute top-113 right-10 font-sans border-foreground border-3 rounded-xl p-2 text-xl hover:bg-foreground hover:text-background transition duration-200 delay-100" onClick = {() => {sendSubFetch(userid)}}> Inscrever-se </button>
+            <button className = "absolute top-113 right-10 font-sans border-foreground border-3 rounded-xl p-2 text-xl hover:bg-foreground hover:text-background transition duration-200 delay-100" onClick = {() => {
+                window.location = "/sub/" + userid;
+            }}> {issub ? "Desinscrever-se" : "Inscrever-se"} </button>
             :
             null
             }

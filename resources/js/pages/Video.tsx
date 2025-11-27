@@ -2,7 +2,7 @@ import * as React from 'react';
 import Header from '@/components/Header';
 import VideoElement from "@/components/VideoElement.tsx";
 
-export default function Video({video, channel, user, subs, videos}) {
+export default function Video({video, channel, user, subs, videos, issub}) {
 
     let videosArr = [];
 
@@ -60,7 +60,10 @@ export default function Video({video, channel, user, subs, videos}) {
                             { user == channel.id ?
                             <div/>
                             :
-                           <button className = "justify-self-end font-mono border-0 font-semibold outline-foreground outline-4 p-1 w-40 rounded-3xl text-lg text-foreground hover:bg-foreground hover:outline-foreground hover:text-background transition delay-40 furation-300"> Inscrever-se </button>                    }
+                           <button className = "justify-self-end font-mono border-0 font-semibold outline-foreground outline-4 p-1 w-fit rounded-3xl text-lg text-foreground hover:bg-foreground hover:outline-foreground hover:text-background transition delay-40 furation-300" onClick = {() => {
+                                window.location = "/sub/" + channel.id;
+                            }}> {issub ? "Desinscrever-se" : "Inscrever-se"} </button>
+                            }
                         </div>
                         <br/>
                         <div className = "w-230 rounded-xl bg-card p-3">

@@ -6,7 +6,7 @@ import PostsTab from "@/components/PostsTab.tsx";
 import VideosTab from "@/components/VideosTab.tsx";
 import * as React from "react";
 
-export default function Channel({username, subs, userid, user, posts, videos}) {
+export default function Channel({username, subs, issub, userid, user, posts, videos}) {
     console.log(posts);
     var [tab, setTab] = React.useState(0);
 
@@ -26,7 +26,7 @@ export default function Channel({username, subs, userid, user, posts, videos}) {
     return (
         <div className = "h-full">
             <Header />
-            <ChannelMenu tab = {tab} setTab = {setTab} username = {username} subs = {subs} userid = {userid}/>
+            <ChannelMenu issub = {issub} tab = {tab} setTab = {setTab} username = {username} subs = {subs} userid = {userid}/>
             <br/>
             <br/>
             <br/>

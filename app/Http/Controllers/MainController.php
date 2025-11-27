@@ -77,7 +77,25 @@ class MainController extends Controller {
 
         $videos = Video::where('user_id', $user->id)->limit(50)->get();
 
+        $videosFinal = [];
+
+        foreach ($videos as $video) {
+            $user = User::where('id', $video->user_id)->first();
+
+            $videoFinal = [
+                "title" => $video->title,
+                "user" => $user,
+                "id" => $video->id
+            ];
+
+            array_push($videosFinal, $videoFinal);
+        }
+
         $posts = Post::where('user_id', $user->id)->limit(50)->get();
+
+        $sub = UserUser::where('channel_id', $user->id)->where('subber_user_id', session()->get('user')['id'])->get();
+
+        $isSub = count($sub) > 0 ? true : false;
 
         if ($user->id == session()->get('user')['id']) {
             return redirect()->route('user.home');
@@ -88,7 +106,8 @@ class MainController extends Controller {
             'subs' => $subs,
             'userid' => $user->id,
             'posts' => $posts,
-            'videos' => $videos
+            'videos' => $videosFinal,
+            'issub' => $isSub
         ]);
     }
 
@@ -98,6 +117,10 @@ class MainController extends Controller {
         $subs = UserUser::where('channel_id', $user->id)->count();
 
         $videos = Video::where('user_id', session()->get('user')['id'])->limit(50)->get();
+
+        $sub = UserUser::where('channel_id', $user->id)->where('subber_user_id', session()->get('user')['id'])->get();
+
+        $isSub = count($sub) > 0 ? true : false;
 
         $videosFinal = [];
 
@@ -120,7 +143,7 @@ class MainController extends Controller {
             "user" => session()->get('user')['id'],
             "subs" => $subs,
             "videos" => $videosFinal,
-
+            "issub" => $isSub,
         ]);
     }
 }

@@ -45,12 +45,27 @@ class MainController extends Controller {
 
         $posts = Post::where('user_id', session()->get('user')['id'])->get();
 
+        $videosFinal = [];
+
+        foreach ($videos as $video) {
+            $user = User::where('id', $video->user_id)->first();
+
+            $videoFinal = [
+                "title" => $video->title,
+                "user" => $user,
+                "id" => $video->id
+            ];
+
+            array_push($videosFinal, $videoFinal);
+        }
+
         return Inertia::render("Channel", [
             'username' => session()->get('user')['username'],
             'subs' => $subs,
             'userid' => -1,
+            'user' => session()->get('user')['id'],
             'posts' => $posts,
-            'videos' => $videos
+            'videos' => $videosFinal
         ]);
     }
 

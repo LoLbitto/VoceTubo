@@ -35,6 +35,7 @@ Route::middleware([CheckLogin::class])->group(
         Route::get('/posts/{post}', [PostsController::class, 'destroy'])->name('posts.destroy');
 
         Route::get('/videos', [VideosController::class, 'videos']);
-        Route::post('/videossubmit', [VideosController::class, 'videosSubmit'])->name('posts.submit');
+        Route::post('/videossubmit', [VideosController::class, 'videosSubmit'])->name('videos.submit');
+        Route::get('/videos/{id}/delete', [VideosController::class, 'destroy'])->name('videos.delete');
     }
 );

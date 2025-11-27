@@ -13,69 +13,69 @@ use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller {
-    public function index (Request $request) {
+    public function index ( Request $request ) {
 
-        $videos = Video::limit(50)->get();
+        $videos = Video::limit( 50 )->get();
 
         $videosFinal = [];
 
-        foreach ($videos as $video) {
-            $user = User::where('id', $video->user_id)->first();
+        foreach ( $videos as $video ) {
+            $user = User::where( 'id', $video->user_id )->first();
 
             $videoFinal = [
-                "title" => $video->title,
-                "user" => $user,
-                "id" => $video->id
+                'title' => $video->title,
+                'user' => $user,
+                'id' => $video->id
             ];
 
-            array_push($videosFinal, $videoFinal);
+            array_push( $videosFinal, $videoFinal );
         }
 
-        if (session()->has("user"))
-            return Inertia::render("Home", ["user" => (int)session()->get('user')['id'], 'videos' => $videosFinal]);
+        if ( session()->has( 'user' ) )
+        return Inertia::render( 'Home', [ 'user' => ( int )session()->get( 'user' )[ 'id' ], 'videos' => $videosFinal ] );
 
-        return Inertia::render("Home", ["user" => null, "videos" => $videosFinal]);
+        return Inertia::render( 'Home', [ 'user' => null, 'videos' => $videosFinal ] );
     }
 
-    public function channel (Request $request) {
+    public function channel ( Request $request ) {
 
-        $subs = UserUser::where('channel_id', session()->get('user')['id'])->count();
+        $subs = UserUser::where( 'channel_id', session()->get( 'user' )[ 'id' ] )->count();
 
-        $videos = Video::where('user_id', session()->get('user')['id'])->limit(50)->get();
+        $videos = Video::where( 'user_id', session()->get( 'user' )[ 'id' ] )->limit( 50 )->get();
 
-        $posts = Post::where('user_id', session()->get('user')['id'])->get();
+        $posts = Post::where( 'user_id', session()->get( 'user' )[ 'id' ] )->get();
 
         $videosFinal = [];
 
-        foreach ($videos as $video) {
-            $user = User::where('id', $video->user_id)->first();
+        foreach ( $videos as $video ) {
+            $user = User::where( 'id', $video->user_id )->first();
 
             $videoFinal = [
-                "title" => $video->title,
-                "user" => $user,
-                "id" => $video->id
+                'title' => $video->title,
+                'user' => $user,
+                'id' => $video->id
             ];
 
-            array_push($videosFinal, $videoFinal);
+            array_push( $videosFinal, $videoFinal );
         }
 
-        return Inertia::render("Channel", [
-            'username' => session()->get('user')['username'],
+        return Inertia::render( 'Channel', [
+            'username' => session()->get( 'user' )[ 'username' ],
             'subs' => $subs,
             'userid' => -1,
-            'user' => session()->get('user')['id'],
+            'user' => session()->get( 'user' )[ 'id' ],
             'posts' => $posts,
             'videos' => $videosFinal
-        ]);
+        ] );
     }
 
-    public function visitChannel (Request $request, String $channel) {
+    public function visitChannel ( Request $request, String $channel ) {
 
-        $user = User::where('username', $channel)->first();
+        $user = User::where( 'username', $channel )->first();
 
-        $subs = UserUser::where('channel_id', $user->id)->count();
+        $subs = UserUser::where( 'channel_id', $user->id )->count();
 
-        $videos = Video::where('user_id', $user->id)->limit(50)->get();
+        $videos = Video::where( 'user_id', $user->id )->limit( 50 )->get();
 
         $videosFinal = [];
 
@@ -101,7 +101,7 @@ class MainController extends Controller {
             return redirect()->route('user.home');
         }
 
-        return Inertia::render("Channel", [
+        return Inertia::render( 'Channel', [
             'username' => $user->username,
             'subs' => $subs,
             'userid' => $user->id,
@@ -111,12 +111,12 @@ class MainController extends Controller {
         ]);
     }
 
-    public function video (Request $request, int $id) {
-        $video = Video::where('id', $id)->first();
-        $user = User::where('id', $video->user_id)->first();
-        $subs = UserUser::where('channel_id', $user->id)->count();
+    public function video ( Request $request, int $id ) {
+        $video = Video::where( 'id', $id )->first();
+        $user = User::where( 'id', $video->user_id )->first();
+        $subs = UserUser::where( 'channel_id', $user->id )->count();
 
-        $videos = Video::where('user_id', session()->get('user')['id'])->limit(50)->get();
+        $videos = Video::where( 'user_id', session()->get( 'user' )[ 'id' ] )->limit( 50 )->get();
 
         $sub = UserUser::where('channel_id', $user->id)->where('subber_user_id', session()->get('user')['id'])->get();
 
@@ -124,19 +124,18 @@ class MainController extends Controller {
 
         $videosFinal = [];
 
-        foreach ($videos as $videoAr) {
-            $user = User::where('id', $videoAr->user_id)->first();
+        foreach ( $videos as $videoAr ) {
+            $user = User::where( 'id', $videoAr->user_id )->first();
 
             $videoFinal = [
-                "title" => $videoAr->title,
-                "user" => $user,
-                "id" => $videoAr->id
+                'title' => $videoAr->title,
+                'user' => $user,
+                'id' => $videoAr->id
             ];
 
-            if ($videoFinal['id'] != $video->id)
-                array_push($videosFinal, $videoFinal);
+            if ( $videoFinal[ 'id' ] != $video->id )
+            array_push( $videosFinal, $videoFinal );
         }
-
         return Inertia::render("Video", [
             "video" => $video,
             "channel" => $user,

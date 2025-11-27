@@ -77,6 +77,12 @@ class MainController extends Controller {
 
         $videos = Video::where('user_id', $user->id)->limit(50)->get();
 
+        $posts = Post::where('user_id', $user->id)->limit(50)->get();
+
+        if ($user->id == session()->get('user')['id']) {
+            return redirect()->route('user.home');
+        }
+
         return Inertia::render("Channel", [
             'username' => $user->username,
             'subs' => $subs,
@@ -86,13 +92,15 @@ class MainController extends Controller {
         ]);
     }
 
-    public function video (Request $request, String $videoCode) {
-        $canal = "teste";
-        $video = "teste";
+    public function video (Request $request, int $id) {
+        $video = Video::where('id', $id)->first();
+        $user = User::where('id', $video->user_id)->first();
+        $subs = UserUser::where('channel_id', $user->id)->count();
 
         return Inertia::render("Video", [
-            'video' => $video,
-            'canal' => $canal,
+            "video" => $video,
+            "user" => $user,
+            "subs" => $subs,
         ]);
     }
 }

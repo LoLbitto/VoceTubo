@@ -10,6 +10,7 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\VideosController;
 use App\Http\Middleware\CheckLogin;
 use App\Http\Middleware\CheckNotLogged;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/video/{videoCode}', [MainController::class, 'video'])->name('video');
@@ -36,5 +37,7 @@ Route::middleware([CheckLogin::class])->group(
 
         Route::get('/videos', [VideosController::class, 'videos']);
         Route::post('/videossubmit', [VideosController::class, 'videosSubmit'])->name('posts.submit');
+
+        Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     }
 );

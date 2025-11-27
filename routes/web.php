@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\VideosController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Middleware\CheckLogin;
 use App\Http\Middleware\CheckNotLogged;
 
@@ -27,6 +28,8 @@ Route::middleware([CheckLogin::class])->group(
     function() {
         Route::get('/channel/', [MainController::class, 'channel'])->name('user.home');
         Route::get('/channel/{channel}', [MainController::class, 'visitChannel'])->name('visit.channel');
+
+        Route::get('/sub/{id}', [SubscriptionController::class, 'sub'])->name('sub');
 
         Route::get('/posts', [PostsController::class,'posts']);
         Route::post('/postssubmit', [PostsController::class, 'postsSubmit'])->name('posts.submit');

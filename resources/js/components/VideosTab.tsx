@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Video from "@/components/Video.tsx";
+import VideoElement from "@/components/VideoElement.tsx";
 
 export default function VideosTab({userid, videos}) {
 
@@ -8,7 +8,7 @@ export default function VideosTab({userid, videos}) {
     if (videos.length > 0) {
         for (let i = 0; i < videos.length; i++) {
             videosArr.push(
-                <Video titulo = {videos[i].title} id = {videos[i].id} user = {userid} poster = {videos[i].user}/>
+                <VideoElement titulo = {videos[i].title} id = {videos[i].id} user = {userid} poster = {videos[i].user}/>
             );
         }
     } else {

@@ -97,10 +97,30 @@ class MainController extends Controller {
         $user = User::where('id', $video->user_id)->first();
         $subs = UserUser::where('channel_id', $user->id)->count();
 
+        $videos = Video::where('user_id', session()->get('user')['id'])->limit(50)->get();
+
+        $videosFinal = [];
+
+        foreach ($videos as $videoAr) {
+            $user = User::where('id', $videoAr->user_id)->first();
+
+            $videoFinal = [
+                "title" => $videoAr->title,
+                "user" => $user,
+                "id" => $videoAr->id
+            ];
+
+            if ($videoFinal['id'] != $video->id)
+                array_push($videosFinal, $videoFinal);
+        }
+
         return Inertia::render("Video", [
             "video" => $video,
-            "user" => $user,
+            "channel" => $user,
+            "user" => session()->get('user')['id'],
             "subs" => $subs,
+            "videos" => $videosFinal,
+
         ]);
     }
 }

@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import Header from "@/components/Header.tsx";
-import Video from "@/components/Video.tsx";
+import VideoElement from "@/components/VideoElement.tsx";
 
 export default function Home({ user, videos }) {
 
@@ -10,7 +10,7 @@ export default function Home({ user, videos }) {
     if (videos.length > 0) {
         for (let i = 0; i < videos.length; i++) {
             videosArr.push(
-                <Video titulo = {videos[i].title} id = {videos[i].id} user = {user} poster = {videos[i].user}/>
+                <VideoElement titulo = {videos[i].title} id = {videos[i].id} user = {user} poster = {videos[i].user}/>
             );
         }
     } else {

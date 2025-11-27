@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import Header from "@/components/Header.tsx";
-import Video from "@/components/Video.tsx";
+import VideoElement from "@/components/VideoElement.tsx";
 import ChannelMenu from "@/components/ChannelMenu.tsx";
 import PostsTab from "@/components/PostsTab.tsx";
 import VideosTab from "@/components/VideosTab.tsx";
